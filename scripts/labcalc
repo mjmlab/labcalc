@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+from labcalc import run
+import sys
+
+if __name__ == '__main__':
+    args = sys.argv[1:]
+    run.main(args)
