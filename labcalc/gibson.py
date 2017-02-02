@@ -64,6 +64,6 @@ def gibson_calc(fragments):
 
 
 #running the program
-insert_number = int(input(('number of inserts (not incluing vector): ')))
+insert_number = int(input('number of inserts (not incluing vector): '))
 fragments = input_info(insert_number)
 print(gibson_calc(fragments))
