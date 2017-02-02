@@ -2,7 +2,30 @@
 
 """Gibson (Isothermal) Assembly"""
 
-#insert function to get variables for calculations
+def input_info(insert_number):
+    """
+    input
+    number of inserts
+
+    prompts for
+    size = base pairs; conc = ng/ul
+
+    returns
+    fragments = {'vector': [v_size,v_conc], 'insert1': [i1_size, i1_conc], ...}
+
+    """
+    n = 1
+    fragments = {}
+    for numbers in range(insert_number):
+        insert_bp_input = int(input(('insert' + str(n) + ' bp: ')))  #insert has to be an integer
+        insert_conc_input = int(input('insert' +str(n) + ' conc: '))
+        fragments['insert' + str(n)] = [insert_bp_input, insert_conc_input]
+        n = n + 1
+
+    vector_ng_input = int(input('vector bp: '))
+    vector_conc_input = int(input('vector conc: '))
+    fragments['vector'] = [vector_ng_input, vector_conc_input]
+    return(fragments)
 
 def gibson_calc(fragments):
     """
@@ -38,3 +61,9 @@ def gibson_calc(fragments):
             reaction[key] = i_ul
 
     return reaction
+
+
+#running the program
+insert_number = int(input('number of inserts (not incluing vector): '))
+fragments = input_info(insert_number)
+print(gibson_calc(fragments))
