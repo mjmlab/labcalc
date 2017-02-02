@@ -63,7 +63,12 @@ def gibson_calc(fragments):
     return reaction
 
 
-#running the program
-insert_number = int(input('number of inserts (not incluing vector): '))
-fragments = input_info(insert_number)
-print(gibson_calc(fragments))
+def gibson():
+    #running the program
+    insert_number = int(input('number of inserts (not incluing vector): '))
+    fragments = input_info(insert_number)
+    print(gibson_calc(fragments))
+
+
+if __name__ == '__main__':
+    gibson()
