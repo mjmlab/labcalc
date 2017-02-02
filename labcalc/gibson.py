@@ -66,7 +66,37 @@ def print_result(dictionary):
     print('') #blank row for clarity
     print('Microliters for each fragment:')
     for key in dictionary:
-        print(key, round(dictionary[key],2))
+        print(key, str(round(dictionary[key],2))+'ul')
+
+#in progress writing
+def analyze_results(fragments,results,insert_number):
+    #test ul are within 10ul available for standard reaction
+    #test ul amount is reasonable
+    sum_ul = 0
+    for key in results:
+        sum_ul += results[key]
+        if results[key] < 1:
+            print('ul too small for %s. May want to dilute.' %key)
+    if sum_ul > 10:
+        print('Total of %sul exceeds standard 10ul for reaction.' %round(sum_ul,2))
+
+    #test pmol are within range for given fragment number
+    ratio = 2
+    if insert_number >2:
+        ratio = 1
+    v_ng = 100 #suggested by protocol
+    sum_pmol = v_ng*(1000/(fragments['vector'][0]*650)) #start equal to v_pmol
+
+    for key in fragments:
+        if key.startswith('insert'):
+            sum_pmol += v_ng*(1000/(fragments['vector'][0]*650))*ratio
+    if insert_number <= 2:
+        if not(sum_pmol>=0.03 and sum_pmol <=0.2):
+            print('Total of %spmol is outside recommended range for 2-3 total fragments' %round(sum_pmol,2))
+    if insert_number >2:
+        if not(sum_pmol>=0.2 and sum_pmol <=0.5):
+            print('Total of %spmol is outside recommended range for 4-6 total fragments' %round(sum_pmol,2))
+
 
 def gibson():
     #running the program
@@ -74,6 +104,7 @@ def gibson():
     fragments = input_info(insert_number)
     results = gibson_calc(fragments)
     print_result(results)
+    analyze_results(fragments,results,insert_number)
 
 
 if __name__ == '__main__':
