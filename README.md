@@ -12,11 +12,14 @@ Molecular biology calculator
 pip install git+https://github.com/mjmlab/labcalc
 ```
 
-### Example Usage
+### List available program
+
+```
+labcalc list
+```
+
+### Run program of interest
 
 ```
 labcalc gibson
 ```
-
-
-`[Documentation](add link here to full documentation)`
