@@ -12,7 +12,7 @@ Molecular biology calculator
 pip install git+https://github.com/mjmlab/labcalc
 ```
 
-### List available program
+### List available programs
 
 ```
 labcalc list
